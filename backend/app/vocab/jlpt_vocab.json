@@ -1,0 +1,77 @@
+[
+    {
+        "word": "会議",
+        "reading": "カイギ",
+        "level": "N4"
+    },
+    {
+        "word": "資料",
+        "reading": "シリョウ",
+        "level": "N3"
+    },
+    {
+        "word": "確認",
+        "reading": "カクニン",
+        "level": "N3"
+    },
+    {
+        "word": "重要",
+        "reading": "ジュウヨウ",
+        "level": "N3"
+    },
+    {
+        "word": "問題",
+        "reading": "モンダイ",
+        "level": "N5"
+    },
+    {
+        "word": "時間",
+        "reading": "ジカン",
+        "level": "N5"
+    },
+    {
+        "word": "会社",
+        "reading": "カイシャ",
+        "level": "N5"
+    },
+    {
+        "word": "説明",
+        "reading": "セツメイ",
+        "level": "N4"
+    },
+    {
+        "word": "必要",
+        "reading": "ヒツヨウ",
+        "level": "N4"
+    },
+    {
+        "word": "準備",
+        "reading": "ジュンビ",
+        "level": "N4"
+    },
+    {
+        "word": "報告",
+        "reading": "ホウコク",
+        "level": "N3"
+    },
+    {
+        "word": "今日",
+        "reading": "キョウ",
+        "level": "N5"
+    },
+    {
+        "word": "話す",
+        "reading": "ハナス",
+        "level": "N5"
+    },
+    {
+        "word": "見る",
+        "reading": "ミル",
+        "level": "N5"
+    },
+    {
+        "word": "考える",
+        "reading": "カンガエル",
+        "level": "N4"
+    }
+]

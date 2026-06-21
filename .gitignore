@@ -1,0 +1,24 @@
+# Secrets and config
+.env
+*.env
+!.env.example
+
+# Audio
+recordings/
+*.mp3
+*.wav
+*.m4a
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.uv/
+
+# Node (for the frontend later)
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
