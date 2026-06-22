@@ -1,6 +1,7 @@
 import os
 from app.audio.transcribe import transcribe_file
 from app.vocab.extract import load_jlpt_table, extract_vocab, VocabItem
+from app.llm.analyze import summarize, filter_useful_words
 
 # Resolve the JLPT table path once, relative to this file, so it works
 # no matter what directory the process is launched from.
@@ -18,11 +19,20 @@ def process_audio(audio_path: str, project_id: str, region: str) -> dict:
     transcript = transcribe_file(audio_path, project_id, region)
 
     vocab_items = extract_vocab(transcript, _jlpt_table)
+    candidates = [
+        {"word": v.word, "reading": v.reading, "level": v.level}
+        for v in vocab_items
+    ]
+
+    summary, summary_usage = summarize(transcript)
+    useful_vocab, filter_usage = filter_useful_words(candidates)
 
     return {
         "transcript": transcript,
-        "vocab": [
-            {"word": v.word, "reading": v.reading, "level": v.level}
-            for v in vocab_items
-        ],
+        "summary": summary,
+        "vocab": useful_vocab,
+        "usage": {           # surfaced for dev visibility, not persisted
+            "summary": summary_usage,
+            "filter": filter_usage,
+        },
     }

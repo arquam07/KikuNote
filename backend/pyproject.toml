@@ -8,6 +8,7 @@ dependencies = [
     "fastapi>=0.138.0",
     "fugashi>=1.5.2",
     "google-cloud-speech>=2.27.0",
+    "google-genai>=2.9.0",
     "python-dotenv>=1.0.0",
     "python-multipart>=0.0.32",
     "unidic-lite>=1.0.8",
