@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from app.vocab.extract import load_jlpt_table, extract_vocab
 
 JLPT_PATH = os.path.join(
-    os.path.dirname(__file__), "..", "app", "vocab", "jlpt_vocab.json"
+    os.path.dirname(__file__), "..", "app", "vocab", "JLPT_vocab_final.json"
 )
 
 # A hand-written sample transcript so we don't burn Chirp calls while testing

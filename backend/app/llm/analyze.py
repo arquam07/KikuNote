@@ -2,9 +2,9 @@ import os
 from pydantic import BaseModel
 from google import genai
 from google.genai import types
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 
 # vertexai=True routes through Vertex using your ADC / service-account identity
 # (the aiplatform.user role you already granted). No API key needed.

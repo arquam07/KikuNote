@@ -1,0 +1,252 @@
+/* KikuNote — single stylesheet. Clean, readable, phone-first. */
+
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --text: #1c1f24;
+  --muted: #6b7280;
+  --border: #e3e6ea;
+  --accent: #0f6e56; /* the KikuNote green from the README diagrams */
+  --record: #c0392b;
+  --error-bg: #fdecea;
+  --error-text: #a02a1c;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Phone-first: full-width with comfortable padding. The max-width keeps it
+   readable on a desktop too without any extra media queries. */
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+
+.header h1 {
+  font-size: 1.6rem;
+  margin: 0 0 0.25rem;
+}
+
+.tagline {
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* --- Controls --- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.btn {
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.85rem 1.4rem;
+  border: none;
+  border-radius: var(--radius);
+  color: #fff;
+  cursor: pointer;
+  /* Comfortable tap target on a phone. */
+  min-height: 52px;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-record {
+  background: var(--accent);
+}
+
+.btn-stop {
+  background: var(--record);
+}
+
+.recording-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--record);
+  font-weight: 600;
+}
+
+.recording-indicator .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--record);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* --- Error --- */
+.error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid #f3c0b8;
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+/* --- Loading --- */
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted);
+  padding: 1rem 0;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Results --- */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+}
+
+.card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+}
+
+.transcript {
+  white-space: pre-wrap; /* keep any line structure in the transcript */
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.summary {
+  margin: 0;
+}
+
+.muted {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* --- Vocab table --- */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.vocab-table th,
+.vocab-table td {
+  text-align: left;
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.vocab-table th {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.vocab-table .word {
+  font-size: 1.15rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.vocab-table .reading {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* JLPT level pill. */
+.level {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #eef0f3;
+  color: #444;
+  white-space: nowrap;
+}
+
+.level-n5 {
+  background: #def7ec;
+  color: #03543f;
+}
+.level-n4 {
+  background: #e1effe;
+  color: #1e429f;
+}
+.level-n3 {
+  background: #fdf6b2;
+  color: #723b13;
+}
+.level-n2 {
+  background: #fde8e8;
+  color: #9b1c1c;
+}
+.level-n1 {
+  background: #edebfe;
+  color: #5521b5;
+}
+.level-unknown {
+  background: #eef0f3;
+  color: #6b7280;
+}

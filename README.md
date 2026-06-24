@@ -122,16 +122,22 @@ flowchart LR
 
 ## Running locally (Phase 1)
 
-> Backend only for now. The React frontend is in progress.
+The backend (FastAPI, port 8000) and the frontend (Vite dev server, port 5173)
+run as **two separate processes**. Start both, then open the Vite URL.
 
 ### Prerequisites
 
 - Python 3.12, [uv](https://github.com/astral-sh/uv)
+- Node.js 18+ and npm (for the frontend)
 - A Google Cloud project with the Speech-to-Text and Vertex AI APIs enabled
 - Authenticated Application Default Credentials with access to those APIs
-- [ffmpeg](https://ffmpeg.org/) (for converting browser audio formats; Chirp handles mp3/wav reliably)
+- **[ffmpeg](https://ffmpeg.org/) on your PATH** — required. The backend converts
+  every uploaded clip to 16kHz mono WAV with ffmpeg before transcription, because
+  Chirp returns empty results on some browser-recorded formats (WebM/Opus, mp4).
+  Install via `winget install Gyan.FFmpeg` (Windows), `brew install ffmpeg` (macOS),
+  or `apt install ffmpeg` (Debian/Ubuntu), then confirm with `ffmpeg -version`.
 
-### Setup
+### 1. Backend
 
 ```bash
 cd backend
@@ -146,20 +152,33 @@ GOOGLE_CLOUD_PROJECT=your-project-id
 STT_REGION=asia-northeast1
 ```
 
-### Try it
+Run the API:
 
-Standalone pipeline on an audio file:
+```bash
+uv run uvicorn app.main:app --reload --port 8000
+# open http://localhost:8000/docs to try POST /process directly
+```
+
+Or run the pipeline standalone on an audio file:
 
 ```bash
 uv run ./scripts/test_pipeline.py ./recordings/your_audio.mp3
 ```
 
-Or run the API and use the interactive docs:
+### 2. Frontend
+
+In a second terminal:
 
 ```bash
-uv run uvicorn app.main:app --reload --port 8000
-# open http://localhost:8000/docs and try POST /process
+cd frontend
+npm install
+npm run dev
 ```
+
+Open the printed URL (usually http://localhost:5173) and record. The Vite dev
+server proxies `/process` to the backend on :8000, so both servers must be
+running. Microphone capture requires a secure context — `localhost` counts, so
+local dev works without HTTPS.
 
 ---
 
