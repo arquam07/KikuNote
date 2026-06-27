@@ -5,7 +5,7 @@ from app.llm.analyze import summarize, filter_useful_words
 
 # Resolve the JLPT table path once, relative to this file, so it works
 # no matter what directory the process is launched from.
-_JLPT_PATH = os.path.join(os.path.dirname(__file__), "vocab", "jlpt_vocab.json")
+_JLPT_PATH = os.path.join(os.path.dirname(__file__), "vocab", "jlpt_vocab_final.json")
 _jlpt_table = load_jlpt_table(_JLPT_PATH)
 
 

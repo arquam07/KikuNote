@@ -137,6 +137,13 @@ run as **two separate processes**. Start both, then open the Vite URL.
   Install via `winget install Gyan.FFmpeg` (Windows), `brew install ffmpeg` (macOS),
   or `apt install ffmpeg` (Debian/Ubuntu), then confirm with `ffmpeg -version`.
 
+  > **Windows gotcha:** if `ffmpeg -version` works in your shell but the API still
+  > reports "ffmpeg not found", the uvicorn server was started from a terminal
+  > opened *before* ffmpeg was installed — that process has a stale PATH snapshot.
+  > Fix: stop uvicorn and restart it from a freshly-opened terminal (verify with
+  > `where ffmpeg` first). As a fallback you can set `FFMPEG_PATH` in `backend/.env`
+  > to the full path of `ffmpeg.exe` and the backend will use it directly.
+
 ### 1. Backend
 
 ```bash
